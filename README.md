@@ -28,3 +28,11 @@ This project demonstrates API automation testing using Java, RestAssured, and JU
    
    ./gradlew clean test
 
+
+## Test Result Report 
+<img width="1809" height="678" alt="image" src="https://github.com/user-attachments/assets/270b5593-8c2c-4628-98ac-74c78aca049e" />
+
+
+
+   
+
