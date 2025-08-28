@@ -24,9 +24,11 @@ This project demonstrates API automation testing using Java, RestAssured, and JU
    export JAVA_HOME=$(/usr/libexec/java_home)
    export PATH=$JAVA_HOME/bin:$PATH
    
-5. Run Tests via Gradle:
+5. Run Tests via Gradle with this commands:
    
-   ./gradlew clean test
+   - ./gradlew test
+   - ./gradlew test -DincludeTags={tags}
+
 
 
 ## Test Result Report 

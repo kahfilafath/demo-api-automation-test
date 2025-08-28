@@ -32,4 +32,31 @@ dependencies {
 
 test {
 	useJUnitPlatform()
+	if (System.getProperty("includeTags")) {
+		useJUnitPlatform {
+			includeTags System.getProperty('includeTags').split(",")
+		}
+	}
+
+	/*
+	useJUnitPlatform{
+		if (System.getProperty("junit.platform.include.tags")) {
+			systemProperties["junit.platform.include.tags"] = System.getProperty("junit.platform.include.tags").split(',')
+		}
+
+		if (System.getProperty("junit.platform.exclude.tags")) {
+			systemProperties["junit.platform.exclude.tags"] = System.getProperty("junit.platform.exclude.tags").split(',')
+		}
+
+	 */
+
+	// show test logw3
+	// Show test execution logs
+
+	testLogging {
+		events "started", "passed", "skipped", "failed"
+		exceptionFormat "full"
+		showStandardStreams = true
+	}
+
 }

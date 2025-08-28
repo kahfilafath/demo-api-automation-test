@@ -6,36 +6,30 @@ import io.restassured.module.jsv.JsonSchemaValidator;
 import io.restassured.response.ResponseBody;
 import org.hamcrest.MatcherAssert;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 
 public class GetCompaniesTest {
 
     CompaniesController companiesController = new CompaniesController();
 
-    @Test
-    public void verifyGetCompaniesReturn20Values(){
-        GetCompaniesResponse getCompaniesResponse = companiesController.getCompaniesByQty(20);
+    @ParameterizedTest(name = "Verify getCompanies API should return the correct value:{index}")
+    @ValueSource(ints = {20,5,1})
+    @Tag(value = "smoke-test")
+    @Tag(value = "TC0001")
+    public void verifyGetCompaniesReturnTheCorrectValues(int totalData){
+        GetCompaniesResponse getCompaniesResponse = companiesController.getCompaniesByQty(totalData);
         Assertions.assertEquals(200,getCompaniesResponse.getCode());
-        Assertions.assertEquals(20,getCompaniesResponse.getTotal());
+        Assertions.assertEquals(totalData,getCompaniesResponse.getTotal());
     }
 
     @Test
-    public void verifyGetCompaniesReturn5Values(){
-        GetCompaniesResponse getCompaniesResponse = companiesController.getCompaniesByQty(5);
-        Assertions.assertEquals(200,getCompaniesResponse.getCode());
-        Assertions.assertEquals(5,getCompaniesResponse.getTotal());
-    }
-
-    @Test
-    public void verifyGetCompaniesReturn1Values(){
-        GetCompaniesResponse getCompaniesResponse = companiesController.getCompaniesByQty(1);
-        Assertions.assertEquals(200,getCompaniesResponse.getCode());
-        Assertions.assertEquals(1,getCompaniesResponse.getTotal());
-    }
-
-    @Test
+    @Tag(value = "TC0002")
+    @DisplayName("Verify getCompanies by Id should not return null value")
     public void verifyGetCompaniesIdShouldNotReturnNullValue(){
         GetCompaniesResponse getCompaniesResponse = companiesController.getAllCompanies();
         for(int i=0; i< getCompaniesResponse.getData().size();i++){
@@ -45,6 +39,9 @@ public class GetCompaniesTest {
     }
 
     @Test
+    @Tag(value = "smoke-test")
+    @Tag(value = "TC0003")
+    @DisplayName("Verify getCompanies API should return the correct Json schema")
     public void verifyGetCompaniesShouldReturnCorrectJsonSchema(){
         ResponseBody getCompaniesResponse = companiesController.getAllCompaniesJsonSchema();
         MatcherAssert.assertThat("Incorrect Json Schema!",getCompaniesResponse.prettyPrint(),
