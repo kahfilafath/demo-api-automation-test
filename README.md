@@ -32,7 +32,7 @@ This project demonstrates API automation testing using Java, RestAssured, and JU
 
 
 ## Test Result Report 
-<img width="1809" height="678" alt="image" src="https://github.com/user-attachments/assets/270b5593-8c2c-4628-98ac-74c78aca049e" />
+<img width="1837" height="681" alt="image" src="https://github.com/user-attachments/assets/22249ab8-b4c1-4504-ad5f-055c7ab55789" />
 
 Please find the demo recording of this project in this link: https://drive.google.com/file/d/1q-nWAwVtr7puGFStnGeSCzj2I2WKZqRD/view?usp=sharing
 
